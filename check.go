@@ -62,6 +62,24 @@ func main() {
 	fmt.Fprintf(os.Stderr, msg)
 
 	setWarnFlags(userDataDir, state)
+
+	if len(os.Args) < 2 {
+		return
+	}
+
+	cmdStr := os.Args[1]
+	cmd := exec.Command(cmdStr, os.Args[2:]...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	cmd.Stdin = os.Stdin
+	err = cmd.Run()
+	if err == nil {
+		return
+	}
+	if exitErr, ok := err.(*exec.ExitError); ok {
+		os.Exit(exitErr.ExitCode())
+	}
+	os.Exit(1)
 }
 
 func getWarnMessage(state warningState) string {
