@@ -307,6 +307,9 @@ func plugIsConnected(plugName string) (bool, error) {
 	cmd := exec.Command("snapctl", "is-connected", plugName)
 
 	err := cmd.Run()
+	if err == nil {
+		return true, nil
+	}
 	if _, ok := err.(*exec.ExitError); ok {
 		return false, nil
 	}
