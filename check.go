@@ -304,7 +304,7 @@ func loadFromSnapYaml(plugs map[string]PlugStatus, filename string) error {
 }
 
 func plugIsConnected(plugName string) (bool, error) {
-	cmd := exec.Command("snapctl", "isConnected", plugName)
+	cmd := exec.Command("snapctl", "is-connected", plugName)
 
 	err := cmd.Run()
 	if _, ok := err.(*exec.ExitError); ok {
