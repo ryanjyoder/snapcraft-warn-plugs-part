@@ -59,7 +59,7 @@ func main() {
 	}
 
 	msg := getWarnMessage(state)
-	fmt.Fprintf(os.Stderr, msg)
+	fmt.Fprintf(os.Stderr, msg+"\n\n")
 
 	setWarnFlags(userDataDir, state)
 
@@ -95,7 +95,7 @@ func getWarnMessage(state warningState) string {
 			if plug.Connected {
 				continue
 			}
-			msg += fmt.Sprintf("\t%s\t%s\n", plugName, plug.Reason)
+			msg += fmt.Sprintf("\t%s\t\t- %s\n", plugName, plug.Reason)
 		}
 	}
 	// add header if there are some optional plugs
@@ -109,7 +109,7 @@ func getWarnMessage(state warningState) string {
 		if plug.Connected {
 			continue
 		}
-		requiredMsg += fmt.Sprintf("\t%s\t%s\n", plugName, plug.Reason)
+		requiredMsg += fmt.Sprintf("\t%s\t\t- %s\n", plugName, plug.Reason)
 	}
 	if requiredMsg != "" {
 		msg = msg + "\n" + MSG_REQUIRED_PLUGS + "\n" + requiredMsg
