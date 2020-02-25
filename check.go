@@ -59,7 +59,7 @@ func main() {
 	}
 
 	msg := getWarnMessage(state)
-	fmt.Fprintf(os.Stderr, msg+"\n\n")
+	fmt.Fprintf(os.Stderr, msg)
 
 	setWarnFlags(userDataDir, state)
 
@@ -113,6 +113,9 @@ func getWarnMessage(state warningState) string {
 	}
 	if requiredMsg != "" {
 		msg = msg + "\n" + MSG_REQUIRED_PLUGS + "\n" + requiredMsg
+	}
+	if msg != "" {
+		msg += "\n\n"
 	}
 	return msg
 
