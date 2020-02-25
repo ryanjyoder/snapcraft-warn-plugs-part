@@ -1,6 +1,7 @@
 # snapcraft-warn-plugs-part
 
 # WIP
+This binary can be included in a snap to warn users about disconnected interfaces. You can included customized messages explaining why the plug is needed.
 
 ## Usage
 At this repo as a part to your snapcraft.yaml, and then include it in your command-chain.
